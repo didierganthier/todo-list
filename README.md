@@ -20,6 +20,19 @@
 
 ## Getting Started
 To get a local copy up and running follow these simple example steps.
+1. Clone the project using `git clone` or just copy the command below:
+  ```
+   git clone https://github.com/didierganthier/todo-list.git
+   ```
+2. Open the project with `Visual Studio Code`
+3. Run `npm install` to get the dependencies
+
+   *not sure how to use npm? Read [this](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).*
+4. Run the webpack server using this command:
+  ```
+   npm start
+   ```
+  *not sure how to use npm? Read [this](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).*
 
 ### Prerequisites
 - Having VsCode installed and configured.
