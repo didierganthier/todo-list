@@ -12,6 +12,10 @@ body {
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 svg {
   fill: white;
   width: 20px;
