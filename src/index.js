@@ -1,3 +1,4 @@
+import editTodo from '../modules/editTodo';
 import './style.css';
 
 const todoList = document.querySelector('.wrapper');
@@ -96,38 +97,14 @@ inputTodo.addEventListener('keypress', (e) => {
   }
 });
 
-const editTodo = () => {
-  document.querySelectorAll('.todo-desc').forEach((item) => {
-    if (item) {
-      item.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && item.value.trim() !== '') {
-          const todos = JSON.parse(localStorage.getItem('todos'));
-          // Find the element with the same index
-          const todo = todos.find((todo) => todo.index === parseInt(item.id.replace('todo-', ''), 10));
-          // Add the new value to the todo
-          todo.description = item.value;
-          todosArray = todos;
-          // Save the new value to the local storage
-          localStorage.setItem('todos', JSON.stringify(todos));
-          // Reload the page
-          window.location.reload();
-          console.log('Reloaded');
-        }
-      });
-    }
-  });
-};
-
 window.onload = () => {
   deleteTodo();
 };
 
 // Reload the page whenever the innerHTML of the todo list changes
 todoList.addEventListener('DOMSubtreeModified', () => {
-  editTodo();
+  editTodo(todosArray);
 });
-
-document.querySelector('.demo').addEventListener('click', () => console.log(todosArray));
 
 // Get todos from local storage on page load
 document.addEventListener('DOMContentLoaded', createTodoFromTheLocalStorage);
