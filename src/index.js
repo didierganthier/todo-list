@@ -51,6 +51,7 @@ const deleteTodo = () => {
         let todos = JSON.parse(localStorage.getItem('todos'));
         // If there is only one todo item
         if (todos.length === 1) {
+          console.log('Only one todo');
           todos = [];
           localStorage.setItem('todos', JSON.stringify(todos));
           window.location.reload();
@@ -91,6 +92,7 @@ inputTodo.addEventListener('keypress', (e) => {
     });
     saveTodoToLocalStorage();
     createTodo(todosArray[todosArray.length - 1]);
+    deleteTodo();
   }
 });
 
