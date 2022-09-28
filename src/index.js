@@ -2,7 +2,7 @@ import './style.css';
 
 const todoList = document.querySelector('.wrapper');
 const inputTodo = document.querySelector('#todo-name');
-const todosArray = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+let todosArray = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
 
 const getValueFromInput = () => {
   const todoValue = inputTodo.value;
@@ -18,12 +18,7 @@ const createTodo = (todoValue) => {
   <input type="checkbox" ${todoValue.completed ? 'checked' : ''}>
   <input type="text" id="todo-${todoValue.index}" class="todo-desc" value="${todoValue.description}">
 </div>
-<svg class="w-2 h-2 ${todoValue.description}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-  </path>
-</svg>
-<svg class="w-6 h-6 hidden ${todoValue.description}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+<svg class="w-6 h-6 ${todoValue.description}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
     `;
   todoList.appendChild(todo);
 };
@@ -31,6 +26,7 @@ const createTodo = (todoValue) => {
 const createTodoFromTheLocalStorage = () => {
   const todos = JSON.parse(localStorage.getItem('todos'));
   if (todos) {
+    todosArray = [];
     todos.forEach((todo) => {
       todosArray.push({
         index: todo.index,
@@ -62,16 +58,20 @@ inputTodo.addEventListener('keypress', (e) => {
 
 // Add an event listener to each todo item
 window.onload = () => {
-  console.log('window loaded');
   document.querySelectorAll('.todo-desc').forEach((item) => {
     // TODO: Add event listener when input is entered
     // Edit local storage when input is changed
+    // item.addEventListener('focus', (e) => {
+    //   document.querySelectorAll(`svg[class*="${e.target.value}"]`)[0].classList.toggle('hidden');
+    // });
+    // item.addEventListener('focusout', (e) => {
+    //   document.querySelectorAll(`svg[class*="${e.target.value}"]`)[0].classList.toggle('hidden');
+    // });
     item.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         const todos = JSON.parse(localStorage.getItem('todos'));
         // Find the element with the same index
         const todo = todos.find((todo) => todo.index === parseInt(item.id.replace('todo-', ''), 10));
-        console.log(item.id.replace('todo-', ''), todo);
         // Add the new value to the todo
         todo.description = item.value;
         // Save the new value to the local storage
@@ -79,7 +79,39 @@ window.onload = () => {
       }
     });
   });
+
+  // Delete todo when trash svg is clicked
+  document.querySelectorAll('svg').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      // Get parent element
+      const parent = e.target.parentElement.parentElement;
+      // Delete the element from the DOM
+      parent.remove();
+      // If array length is 1 just delete everything
+      if (todosArray.length === 1) {
+        todosArray = [];
+        localStorage.setItem('todos', JSON.stringify(todosArray));
+        return;
+      }
+      // Remove the element from the local storage
+      const todos = JSON.parse(localStorage.getItem('todos'));
+      // Get the index of the element to be deleted
+      const index = parseInt(parent.querySelector('.todo-desc').id.replace('todo-', ''), 10);
+      // // Find the element with the same index
+      const todoIndex = todos.find((todo) => todo.index === index);
+      // // Remove the element from the array
+      todosArray = todos.filter((todo) => todoIndex !== todo);
+      // // Change the index of the todos
+      todosArray.forEach((todo, i) => {
+        todo.index = i + 1;
+      });
+      // // Save the new array to the local storage
+      localStorage.setItem('todos', JSON.stringify(todosArray));
+    });
+  });
 };
+
+document.querySelector('.demo').addEventListener('click', () => console.log(todosArray));
 
 // Get todos from local storage on page load
 document.addEventListener('DOMContentLoaded', createTodoFromTheLocalStorage);
