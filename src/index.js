@@ -16,7 +16,7 @@ const createTodo = (todoValue) => {
   todo.classList.add('item');
   todo.innerHTML = `
   <div>
-  <input type="checkbox" ${todoValue.completed ? 'checked' : ''}>
+  <input id=${todoValue.index} type="checkbox" ${todoValue.completed ? 'checked' : ''}>
   <input type="text" id="todo-${todoValue.index}" class="todo-desc" value="${todoValue.description}">
 </div>
 <svg class="w-6 h-6 ${todoValue.description}" id=${todoValue.index} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -101,10 +101,43 @@ window.onload = () => {
   deleteTodo();
 };
 
+// Get all the checkboxes
+const checkTodo = () => {
+  document.querySelectorAll('input[type="checkbox"]').forEach((item) => {
+    item.addEventListener('change', (e) => {
+      // Only on the index being checked
+      if (e.target.checked) {
+        todosArray = JSON.parse(localStorage.getItem('todos'));
+        // Find the element with the same index
+        const todo = todosArray.find((todo) => todo.index === parseInt(e.target.id, 10));
+        // Add the new value to the todo
+        todo.completed = true;
+        // Save the new value to the local storage
+        localStorage.setItem('todos', JSON.stringify(todosArray));
+        // // Reload the page
+        window.location.reload();
+      } else {
+        todosArray = JSON.parse(localStorage.getItem('todos'));
+        // Find the element with the same index
+        const todo = todosArray.find((todo) => todo.index === parseInt(e.target.id, 10));
+        // Add the new value to the todo
+        todo.completed = false;
+        // Save the new value to the local storage
+        localStorage.setItem('todos', JSON.stringify(todosArray));
+        // // Reload the page
+        window.location.reload();
+      }
+    });
+  });
+};
+
 // Reload the page whenever the innerHTML of the todo list changes
 todoList.addEventListener('DOMSubtreeModified', () => {
   editTodo(todosArray);
+  checkTodo();
 });
+
+document.querySelector('.clear-btn').addEventListener('click', () => console.log(todosArray));
 
 // Get todos from local storage on page load
 document.addEventListener('DOMContentLoaded', createTodoFromTheLocalStorage);
