@@ -1,3 +1,4 @@
+import clearAllCompleted from '../modules/clearAllCompleted';
 import editTodo from '../modules/editTodo';
 import './style.css';
 
@@ -137,7 +138,7 @@ todoList.addEventListener('DOMSubtreeModified', () => {
   checkTodo();
 });
 
-document.querySelector('.clear-btn').addEventListener('click', () => console.log(todosArray));
+document.querySelector('.clear-btn').addEventListener('click', () => clearAllCompleted(todosArray));
 
 // Get todos from local storage on page load
 document.addEventListener('DOMContentLoaded', createTodoFromTheLocalStorage);
