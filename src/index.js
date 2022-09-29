@@ -1,5 +1,5 @@
-import clearAllCompleted from '../modules/clearAllCompleted';
-import editTodo from '../modules/editTodo';
+import clearAllCompleted, { checkTodo } from '../modules/checkAndClear.js';
+import editTodo from '../modules/editTodo.js';
 import './style.css';
 
 const todoList = document.querySelector('.wrapper');
@@ -53,7 +53,6 @@ const deleteTodo = () => {
         let todos = JSON.parse(localStorage.getItem('todos'));
         // If there is only one todo item
         if (todos.length === 1) {
-          console.log('Only one todo');
           todos = [];
           localStorage.setItem('todos', JSON.stringify(todos));
           window.location.reload();
@@ -61,11 +60,9 @@ const deleteTodo = () => {
         }
         // Find the parent of the svg
         const parent = e.target.parentElement.parentElement;
-        console.log(parent);
         // Find the index of the todo
         const index = e.target.parentElement.id;
         todos = todos.filter((todo) => todo.index !== parseInt(index, 10));
-        console.log(todos);
         todosArray = todos;
         saveTodoToLocalStorage();
         parent.remove();
@@ -102,40 +99,10 @@ window.onload = () => {
   deleteTodo();
 };
 
-// Get all the checkboxes
-const checkTodo = () => {
-  document.querySelectorAll('input[type="checkbox"]').forEach((item) => {
-    item.addEventListener('change', (e) => {
-      // Only on the index being checked
-      if (e.target.checked) {
-        todosArray = JSON.parse(localStorage.getItem('todos'));
-        // Find the element with the same index
-        const todo = todosArray.find((todo) => todo.index === parseInt(e.target.id, 10));
-        // Add the new value to the todo
-        todo.completed = true;
-        // Save the new value to the local storage
-        localStorage.setItem('todos', JSON.stringify(todosArray));
-        // // Reload the page
-        window.location.reload();
-      } else {
-        todosArray = JSON.parse(localStorage.getItem('todos'));
-        // Find the element with the same index
-        const todo = todosArray.find((todo) => todo.index === parseInt(e.target.id, 10));
-        // Add the new value to the todo
-        todo.completed = false;
-        // Save the new value to the local storage
-        localStorage.setItem('todos', JSON.stringify(todosArray));
-        // // Reload the page
-        window.location.reload();
-      }
-    });
-  });
-};
-
 // Reload the page whenever the innerHTML of the todo list changes
 todoList.addEventListener('DOMSubtreeModified', () => {
   editTodo(todosArray);
-  checkTodo();
+  checkTodo(todosArray);
 });
 
 document.querySelector('.clear-btn').addEventListener('click', () => clearAllCompleted(todosArray));
