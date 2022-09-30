@@ -15,7 +15,7 @@
 
 
 ## Live Demo
-[Not available yet but checkout this cool GIF](https://giphy.com/clips/hamlet-jJjb9AUHOiP3nJJMdy)
+[Checkout here](https://didierganthier.github.io/todo-list/)
 
 
 ## Getting Started
