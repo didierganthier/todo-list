@@ -1,4 +1,4 @@
-import clearAllCompleted, { checkTodo } from '../modules/checkAndClear.js';
+import { clearAllCompleted, checkTodo } from '../modules/checkAndClear.js';
 import editTodo from '../modules/editTodo.js';
 import './style.css';
 
