@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/didierganthier/todo-list.git"
+    "url": "git+https://github.com/didierganthier/todo-list.git/dist"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/didierganthier/todo-list/issues"
   },
-  "homepage": "https://github.com/didierganthier/todo-list#readme",
+  "homepage": "https://github.com/didierganthier/todo-list/dist",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
