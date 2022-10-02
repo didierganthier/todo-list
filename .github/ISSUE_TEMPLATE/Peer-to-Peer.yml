@@ -1,6 +1,6 @@
-name: 🐞 Morning session
+name: 😎 Morning session
 description: Peer-to-peer code review
-title: "[Review] <title>"
+title: "[Peer-to-peer Code Review]: "
 labels: [Review, Needs Triage]
 body:
 - type: checkboxes
