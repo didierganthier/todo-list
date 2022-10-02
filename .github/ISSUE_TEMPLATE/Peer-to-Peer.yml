@@ -4,6 +4,13 @@ title: "[Peer-to-peer Code Review]: "
 labels: ["review", "enhancement"]
 assignees: "didierganthier"
 body:
+- type: input
+  attributes:
+    label: Who's creating this issue ? 😁
+    description: "Add your name here"
+    placeholder: "@didierganthier"
+  validations:
+    required: true
 - type: textarea
   attributes:
     label: Highlights 🚀 
@@ -21,7 +28,7 @@ body:
     placeholder: |
       Add your suggestions here
   validations:
-    required: false
+    required: true
 - type: textarea
   attributes:
     label: Optional Changes 💭  
@@ -45,4 +52,4 @@ body:
     description: "Some encouraging words"
     placeholder: "Good luck with this project and happy hacking 👨‍💻"
   validations:
-    required: false   
+    required: false
