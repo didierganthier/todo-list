@@ -2,51 +2,47 @@ name: 😎 Morning session
 description: Peer-to-peer code review
 title: "[Peer-to-peer Code Review]: "
 labels: [Review, Needs Triage]
+assignees: "didierganthier"
 body:
 - type: textarea
   attributes:
     label: Highlights 🚀 
     description: Anything you'd like to highlight about this project.
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Expected Behavior
-    description: A concise description of what you expected to happen.
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Steps To Reproduce
-    description: Steps to reproduce the behavior.
     placeholder: |
-      1. In this environment...
-      2. With this config...
-      3. Run '...'
-      4. See error...
+      1. Great PR title and description
+      2. Concise commit messages
+      3. Descriptive README.md file
   validations:
     required: false
 - type: textarea
   attributes:
-    label: Environment
-    description: |
-      examples:
-        - **OS**: Ubuntu 20.04
-        - **Node**: 13.14.0
-        - **npm**: 7.6.3
-    value: |
-        - OS:
-        - Node:
-        - npm:
-    render: markdown
+    label: Suggested Changes 💻 
+    description: However, there is always room for improvement.
+    placeholder: |
+      Add your suggestions here
   validations:
     required: false
 - type: textarea
   attributes:
-    label: Anything else?
+    label: Optional Changes 💭  
+    description: These changes are optionals but they would be nice.
+    placeholder: |
+      Add your suggestions here
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Useful links 🤔 
     description: |
-      Links? References? Anything that will give us more context about the issue you are encountering!
+      Links? References? Anything that will help address the issue
 
       Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
   validations:
     required: false
+ - type: input
+   attributes:
+     label: Cheers and Happy Coding ✨
+     description: "Some encouraging words"
+     placeholder: "Good luck with this project and happy hacking 👨‍💻"
+   validations:
+    required: true
