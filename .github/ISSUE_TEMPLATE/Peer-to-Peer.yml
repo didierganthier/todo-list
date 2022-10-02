@@ -1,7 +1,7 @@
 name: 🐞 Morning session:
 description: Peer-to-peer code review
-title: "[Code Review] <title>"
-labels: [Code Review, Needs Triage]
+title: "[Review] <title>"
+labels: [Review, Needs Triage]
 body:
 - type: checkboxes
   attributes:
