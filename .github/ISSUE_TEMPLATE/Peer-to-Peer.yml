@@ -3,17 +3,10 @@ description: Peer-to-peer code review
 title: "[Peer-to-peer Code Review]: "
 labels: [Review, Needs Triage]
 body:
-- type: checkboxes
-  attributes:
-    label: Is there an existing issue for this?
-    description: Please search to see if an issue already exists for the bug you encountered.
-    options:
-    - label: I have searched the existing issues
-      required: true
 - type: textarea
   attributes:
-    label: Current Behavior
-    description: A concise description of what you're experiencing.
+    label: Highlights 🚀 
+    description: Anything you'd like to highlight about this project.
   validations:
     required: false
 - type: textarea
