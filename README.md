@@ -52,12 +52,6 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@didierganthier_](https://twitter.com/didierganthier_)
 - LinkedIn: [didierganthier](https://linkedin.com/in/didierganthier)
 
-👤 **Author2**
-
-- GitHub: [@Javivy](https://github.com/Javivy)
-- Twitter: [@Javivy_2803](https://twitter.com/Javivy_2803)
-- LinkedIn: [Javier Vargas](https://www.linkedin.com/in/javier-alejandro-vargas-ortega/)
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
